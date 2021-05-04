@@ -1,0 +1,32 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome" access="global">
+    <aura:attribute name="busrecordId" type="Id"/>
+    <aura:handler event="c:FleetManagementSystemEvent" action="{!c.busComponentEvent}"/>
+    
+    <div class="slds-box slds-theme_shade" id="busDetailsComponent">
+        <br></br>
+        <h1>
+            <span class="slds-page-header__title slds-truncate" title="Bus Details">Bus Details</span>  
+        </h1>  
+        <br></br>
+        <lightning:recordEditForm recordId="{!v.busrecordId}" objectApiName="Bus__c" onsuccess="{!c.handleSuccess}" onerror="{!c.handleError}">
+            <div class="slds-box">
+                <lightning:outputField  fieldName="Name" />
+                <lightning:messages />
+                <lightning:inputField aura:id="field" fieldName="Year__c"/>
+                <lightning:inputField aura:id="field" fieldName="Maximum_Capacity__c"/>
+                <lightning:inputField aura:id="field" fieldName="Odometer_Reading__c"/>
+                <br></br>
+                <lightning:button variant="brand" label="Save" title="Save" type="submit" />
+                <lightning:button variant="neutral" label="Cancel" title="Cancel" onclick="{!c.handleReset}" />
+            </div>
+            <br></br>
+            <br></br>
+            <div class="slds-box">
+                <h3>
+                    <span class="slds-page-header__title slds-truncate" title="Resale Value">Resale Value:</span>
+                    <lightning:outputField  fieldName="Resale_Value__c" variant="label-hidden"/>
+                </h3>
+            </div>
+        </lightning:recordEditForm>
+    </div>
+</aura:component>
